@@ -5,7 +5,10 @@
 function shuffleArray(){
 
   let arrayContents=[
-    1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8
+    'fa-cat','fa-cat','fa-dove','fa-dove',
+    'fa-dog','fa-dog','fa-crow','fa-crow',
+    'fa-hippo','fa-hippo','fa-dragon','fa-dragon',
+    'fa-fish','fa-fish','fa-horse','fa-horse'
   ]
   let currentIndex= [arrayContents.length]
   let tempoaryValue, randomIndex
@@ -101,8 +104,6 @@ let timer = document.createElement('SPAN')
 */
 function start () {
 
-    console.log('the event', event)
-
   if(startGame === 0){
     startTimer()
     startGame++
@@ -119,31 +120,35 @@ function start () {
     count++
 
     if (count === 1) {
-
+      //pushes the sibling class name of the  clicked element in an array
       let changeClasses = document.getElementById(mainEvent)
       changeClasses.setAttribute('class', 'styleColWrapperFlip')
-      let siblingFirstInfo = document.getElementById(sibling).childNodes[0].innerHTML
+      let siblingFirstInfo = document.getElementById(sibling).childNodes[0].className
       firstSecondPick.push(siblingFirstInfo)
 
     }
     else if (count == 2) {
-
-      let siblingSecondInfo = document.getElementById(sibling).childNodes[0].innerHTML
+        /* pushes the sibling class name of the  
+        * clicked element in an array and chececks if the element in the array are equal
+        */
+      let siblingSecondInfo = document.getElementById(sibling).childNodes[0].className
       firstSecondPick.push(siblingSecondInfo)
       let secondElement = firstSecondPick.pop()
       let booleanResult = firstSecondPick.includes(secondElement)
 
       numberOfMoves++
-      if(numberOfMoves <= 12){
-          /*do nothing*/
+      /*checks if the number of times you open a card , either wrong or right and ahows the stars 
+      * stars are determined based on if the number of open cards fall in those ranges below
+      */
+      if(numberOfMoves <= 10){
           numberOfStars = 3
       }
-      else if(numberOfMoves <= 20){
+      else if(numberOfMoves <= 16){
         document.getElementById('full-rating1').style.display='none'
         document.getElementById('star1').style.display=''
         numberOfStars = 2
       }
-      else if(numberOfMoves >= 30){
+      else if(numberOfMoves >= 24){
         document.getElementById('full-rating1').style.display='none'
         document.getElementById('full-rating2').style.display='none'
         document.getElementById('star1').style.display=''
@@ -216,6 +221,7 @@ function start () {
     }
 }
 
+/* to create the layout for the board game */
 function insertElements(){
 
   timer.innerHTML = 00 + ":" + 00
@@ -235,7 +241,6 @@ function insertElements(){
   document.getElementById("move").innerHTML = numberOfMoves
 
   let content = createFourByFourArray()
-  console.log(content)
 
   for (let row = 0; row < content.length; row++) {
 
@@ -268,10 +273,9 @@ function insertElements(){
     
     document.getElementsByClassName("styleContainerDiv")[row].getElementsByClassName("styleColWrapper")[col].appendChild(insideBoardBack)
 
-    let insideBoadContent = document.createElement('P')
-    insideBoadContent.className = 'content'
-
-    insideBoadContent.innerHTML = content[row][col]
+    let insideBoadContent = document.createElement('I')
+    insideBoadContent.className = `fas ${content[row][col]}`
+    insideBoadContent.className += ' content' 
 
     document.getElementsByClassName("styleContainerDiv")[row].getElementsByClassName('styleInsideBoardFront')[col].appendChild(insideBoadContent)
 
@@ -281,7 +285,7 @@ function insertElements(){
 }
 }
 
-
+// Function is called to start the game again and clear all plays
 function startAgain(){
   insertElements()
 }
@@ -325,6 +329,7 @@ function completeGame(){
 
 }
 
+// To restart the game
 function  clickButton(){
 
     document.getElementById("star-pointId").style.display = ""
