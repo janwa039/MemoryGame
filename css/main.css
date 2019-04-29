@@ -171,18 +171,18 @@
 #winning-message{
   text-align: center;
   font-size: 1.3em;
-  color: #f7f101;
+  color: #ff8335;
   position: relative;
-  /* top: 39%; */
 }
 
 #play-again{
-  color: #f7f101;
-  background-color: #884207;
+  color: #330423;
+  background-color: #ff8335;
   position: relative;
   padding: 11px 22px;
-  border: 2px solid #884207;
-  text-align: center
+  border: 2px solid #ff8335;
+  text-align: center;
+  font-size: 1.1em
 }
 
 #subWinning-message{
@@ -200,6 +200,13 @@
 #timeSpent{
   font-size: 1.5em;
   color: white;
+
+}
+
+#restart{
+  font-size: 22px;
+  color: #dd2a5a;
+  padding-right: 43px;
 
 }
 

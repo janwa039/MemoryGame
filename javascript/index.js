@@ -140,15 +140,15 @@ function start () {
       /*checks if the number of times you open a card , either wrong or right and ahows the stars 
       * stars are determined based on if the number of open cards fall in those ranges below
       */
-      if(numberOfMoves <= 10){
+      if(numberOfMoves <= 12){
           numberOfStars = 3
       }
-      else if(numberOfMoves <= 16){
+      else if(numberOfMoves <= 22){
         document.getElementById('full-rating1').style.display='none'
         document.getElementById('star1').style.display=''
         numberOfStars = 2
       }
-      else if(numberOfMoves >= 24){
+      else if(numberOfMoves >= 28){
         document.getElementById('full-rating1').style.display='none'
         document.getElementById('full-rating2').style.display='none'
         document.getElementById('star1').style.display=''
@@ -223,6 +223,7 @@ function start () {
 
 /* to create the layout for the board game */
 function insertElements(){
+  let restartButton = document.getElementById("restart").addEventListener("click", restartGame)
 
   timer.innerHTML = 00 + ":" + 00
 
@@ -290,13 +291,28 @@ function startAgain(){
   insertElements()
 }
 
+function restartGame(){
+  document.getElementById('full-rating1').style.display=''
+  document.getElementById('full-rating2').style.display=''
+  document.getElementById('full-rating3').style.display=''
+  document.getElementById('main').remove()
+  endOfGame()
+  numberOfMoves = 0
+  numberOfStars = 0
+  numberOfOpenCards = 0
+  startGame = 0
+
+  startAgain()
+
+}
+
 
 function completeGame(){
 
   document.getElementById("main").style.display = "none"
   document.getElementById("star-pointId").style.display = "none"
   document.getElementById("game-titleId").style.display = "none"
-  document.getElementById("checking-main").style.background = "#2c3646"
+  document.getElementById("checking-main").style.background = "#330424"
   document.getElementById("checking-main").style.position = "relative"
   document.getElementById("checking-main").appendChild(finishedDiv) 
 
