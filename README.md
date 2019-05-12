@@ -21,4 +21,4 @@ During Each turn:
 
                                               HAVE FUN
 
-<img src="images/memory-game-screenshot.png" width="200" height="200" />
+<img src="images/memory-game-screenshot.png" width="500" height="500" />
