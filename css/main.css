@@ -205,9 +205,17 @@
 
 #restart{
   font-size: 22px;
-  color: #dd2a5a;
+  color: #feff00;
   padding-right: 43px;
 
+}
+
+@media only screen and (min-width: 768px) {
+  #main {
+    width: 367px;
+    height: 420px;
+
+}
 }
 
 

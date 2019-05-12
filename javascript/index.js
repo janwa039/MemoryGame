@@ -47,7 +47,7 @@ function createFourByFourArray(){
 let gameInterval
 let timespent
 
-/* start the start when the player  startes the game
+/* starts when the player click on atleast one of the cards
 * Increments and update after every 1sec
 */
 function startTimer(){
@@ -83,21 +83,26 @@ function endOfGame() {
 }
 
 
-
+/* variables defined */
 let numberOfMoves = 0
 let numberOfStars = 0
 let startGame = 0
 let count = 0
-let firstSecondPick = []
-let firstSecondPickId = []
-let firstSecondparents = []
 let maxOpens = 2
 let numberOfOpenCards = 0
 let maxNumberOfOpenCards = 8
+let firstSecondPick = []
+let firstSecondPickId = []
+let firstSecondparents = []
 
+
+/*creates the div that is displayed when the game is over
+* so the user can play again
+*/
 let finishedDiv = document.createElement('Div')
 finishedDiv.id = "finished-div"
 let timer = document.createElement('SPAN')
+
 
 /* when player starts the game this methods is called. Also,
 * loigc for opening and closing the mini boxes(cards)
@@ -221,7 +226,9 @@ function start () {
     }
 }
 
-/* to create the layout for the board game */
+/* When the body is loaded then this function is called 
+* to create the layout for the board game
+*/
 function insertElements(){
   let restartButton = document.getElementById("restart").addEventListener("click", restartGame)
 
@@ -286,11 +293,16 @@ function insertElements(){
 }
 }
 
-// Function is called to start the game again and clear all plays
+/*This function is called to 
+* restart the build of the game
+*/
 function startAgain(){
   insertElements()
 }
 
+/*This function is called to clear the layout 
+* and reset the game
+*/
 function restartGame(){
   document.getElementById('full-rating1').style.display=''
   document.getElementById('full-rating2').style.display=''
@@ -306,7 +318,9 @@ function restartGame(){
 
 }
 
-
+/* set the layout displayed when the player opens all the cards 
+* and finishes the game
+*/
 function completeGame(){
 
   document.getElementById("main").style.display = "none"
