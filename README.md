@@ -2,6 +2,8 @@
 
 Memory Game is a card matching game, where you get to test how well you can remember or recall things last seen. Always remember this game is for fun not just to get the fastest time or best rate time. Enjoy !!!
 
+<img src="images/memory-game-screenshot.png" width="290px" height="350px" />
+
 ### Rules
 The game board consists of sixteen cards which are randomly arranged with the cards faced down everytime the player starts or restarts the game or even reloads the page. Each row and column is made up four cards each. The game board  is made up of eight different pairs of cards (making it 16cards all together). 
 
@@ -21,4 +23,4 @@ During Each turn:
 
                                               HAVE FUN
 
-<img src="images/memory-game-screenshot.png" width="290px" height="350px" />
+
