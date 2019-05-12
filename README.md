@@ -20,4 +20,4 @@ During Each turn:
 
 
                                               HAVE FUN
-                                      ![Memory game](memory-game-screenshot.png)  
+![Memory game](memory-game-screenshot.png)  
