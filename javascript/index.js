@@ -94,7 +94,9 @@ let maxNumberOfOpenCards = 8
 let firstSecondPick = []
 let firstSecondPickId = []
 let firstSecondparents = []
-
+let numberofClickedCards = []
+let numberofClickedSecondCards = []
+let numberofClicks = 0
 
 /*creates the div that is displayed when the game is over
 * so the user can play again
@@ -132,28 +134,63 @@ function start () {
       firstSecondPick.push(siblingFirstInfo)
 
     }
-    else if (count == 2) {
+    else if (count === 2) {
         /* pushes the sibling class name of the  
-        * clicked element in an array and chececks if the element in the array are equal
+        * clicked element in an array and checks if the element in the array are equal
         */
       let siblingSecondInfo = document.getElementById(sibling).childNodes[0].className
       firstSecondPick.push(siblingSecondInfo)
+
       let secondElement = firstSecondPick.pop()
       let booleanResult = firstSecondPick.includes(secondElement)
 
-      numberOfMoves++
+      if(!booleanResult){
+        numberofClicks++
+        
+        if(numberofClickedCards.length === 0){
+          numberofClickedCards.push(secondElement)
+          numberofClickedCards.push(firstSecondPick[0])
+        }
+        else{
+  
+          if(numberofClickedCards.includes(secondElement) || numberofClickedCards.includes(firstSecondPick[0]))
+            {
+               numberofClickedSecondCards.push(secondElement)
+               numberofClickedSecondCards.push(firstSecondPick[0])
+            }
+            else{           
+              numberofClickedCards.push(secondElement)
+              numberofClickedCards.push(firstSecondPick[0])
+            }
+        }
+
+      }
+      if(booleanResult){
+        numberOfMoves++
+
+      }else{
+        if(numberofClickedSecondCards.includes(secondElement) || numberofClickedSecondCards.includes(firstSecondPick[0])){
+
+        }else{
+
+          numberOfMoves++
+        }
+
+      }
+
+      
       /*checks if the number of times you open a card , either wrong or right and ahows the stars 
       * stars are determined based on if the number of open cards fall in those ranges below
       */
-      if(numberOfMoves <= 12){
+      if(numberofClicks <= 12){
           numberOfStars = 3
       }
-      else if(numberOfMoves <= 22){
+      else if(numberofClicks <= 22){
         document.getElementById('full-rating1').style.display='none'
         document.getElementById('star1').style.display=''
         numberOfStars = 2
       }
-      else if(numberOfMoves >= 28){
+      else if(numberofClicks >= 28){
         document.getElementById('full-rating1').style.display='none'
         document.getElementById('full-rating2').style.display='none'
         document.getElementById('star1').style.display=''
@@ -187,7 +224,10 @@ function start () {
         if( maxNumberOfOpenCards === numberOfOpenCards ){
           
           endOfGame()
-          completeGame()        
+          completeGame()
+          numberofClickedCards = []
+          numberofClickedSecondCards = []
+          numberofClicks = 0      
         }
       }
       else {
@@ -210,7 +250,7 @@ function start () {
             let changeFirstParent = document.getElementById(firstSecondparents[0])
             changeFirstParent.setAttribute('class', 'styleColWrapperFlip2')
 
-            while (firstSecondPickId.length > 0 || firstSecondPick > 0 || firstSecondparents > 0) {
+            while (firstSecondPickId.length > 0 || firstSecondPick > 0 || firstSecondparents > 0 ) {
               firstSecondPickId.pop()
               firstSecondPick.pop()
               firstSecondparents.pop()
@@ -313,6 +353,9 @@ function restartGame(){
   numberOfStars = 0
   numberOfOpenCards = 0
   startGame = 0
+  numberofClickedCards = []
+  numberofClickedSecondCards = []
+  numberofClicks = 0   
 
   startAgain()
 
@@ -336,8 +379,6 @@ function completeGame(){
 
   winningMessage.innerHTML = 'CONGRATULATIONS! YOU WON'
   document.getElementById("finished-div").appendChild(winningMessage)
-
-  console.log('winning message', winningMessage)
 
   let timeSpent = document.createElement('P')
   timeSpent.id = 'timeSpent'
